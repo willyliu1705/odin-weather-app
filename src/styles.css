@@ -1,0 +1,22 @@
+.search-container {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.weather-data-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.weather-data-style {
+  border: 2px solid black;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.conditions {
+  text-align: center;
+}

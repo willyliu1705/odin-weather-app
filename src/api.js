@@ -1,9 +1,9 @@
 export { getWeatherData, processData };
 
-async function getWeatherData() {
+async function getWeatherData(searchValue) {
   try {
     const response = await fetch(
-      "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/london?key=U6PCHFGKMTYE2989799EE5FMK",
+      `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${searchValue}?key=U6PCHFGKMTYE2989799EE5FMK`,
     );
     const data = await response.json();
     return data;
@@ -14,11 +14,6 @@ async function getWeatherData() {
 
 async function processData(dataPromise) {
   const dataObject = await dataPromise;
-  const dataArray = dataObject.days;
-  let requiredData = {};
-  dataArray.forEach((element, index) => {
-    requiredData[`day${index}`] = [element.datetime, element.conditions, element.temp];
-  });
-  console.log(requiredData);
-  return requiredData;
+  const currentData = dataObject.currentConditions;
+  return { conditions: currentData.conditions, temp: currentData.temp };
 }
